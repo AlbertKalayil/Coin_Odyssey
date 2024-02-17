@@ -14,6 +14,8 @@ coin_width = 10
 box_height = 30
 box_width = 30
 
+score = 0
+
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Passes the display settings to pygame
 screen_rect = screen.get_rect()
 
@@ -48,7 +50,7 @@ class Box():
         self.width = width
         self.color = color
 
-        self.rect = pygame.Rect(self.x, self.y, coin_height, coin_width)
+        self.rect = pygame.Rect(self.x, self.y, box_height, box_width)
     def draw(self):
         pygame.draw.rect(screen, self.color, self.rect)
 
@@ -67,6 +69,10 @@ while run: # Initializes game
 
     for coin in coins:
         coin.draw()
+        if square_player.colliderect(coin):
+            coins.remove(coin)
+            score += 1
+
 
 
 
@@ -74,9 +80,16 @@ while run: # Initializes game
         box.draw()
 
 
+    #for coin in coins:
+        #if square_player.colliderect(coin):
+            #coins.remove(coin)
+            #score += 1
+
+
+
     
     key = pygame.key.get_pressed()
-    if key[pygame.K_a]:
+    if key[pygame.K_a] == True:
         square_player.move_ip(-1,0)
         time.sleep(0.01)
     elif key[pygame.K_d] == True:
