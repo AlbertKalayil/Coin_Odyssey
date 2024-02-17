@@ -1,14 +1,21 @@
-# Limited Space Game
-
 import pygame # Imports pygame module
 import time # Imports time module
+import random
 
 pygame.init() # Initializes pygame
 
 SCREEN_WIDTH = 800 # Sets screen width variable to 800 pixels
 SCREEN_HEIGHT = 600 # Sets screen height variable to 600 pixels
 
+
+coin_height = 10
+coin_width = 10
+
+box_height = 30
+box_width = 30
+
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Passes the display settings to pygame
+screen_rect = screen.get_rect()
 
 square_player = pygame.Rect((300, 250, 15, 15)) # Creates a pygame rectange (x_location, y_location, width, height)
 
@@ -20,14 +27,56 @@ def bounding_box(x, y, width, height):
 def collision():
     pass
 
+
+class Coin():
+    def __init__(self, x, y, height, width, color):
+        self.x = x
+        self.y = y
+        self.height = height
+        self.width = width
+        self.color = color
+
+        self.rect = pygame.Rect(self.x, self.y, coin_height, coin_width)
+    def draw(self):
+        pygame.draw.rect(screen, self.color, self.rect)
+
+class Box():
+    def __init__(self, x, y, height, width, color):
+        self.x = x
+        self.y = y
+        self.height = height
+        self.width = width
+        self.color = color
+
+        self.rect = pygame.Rect(self.x, self.y, coin_height, coin_width)
+    def draw(self):
+        pygame.draw.rect(screen, self.color, self.rect)
+
+coins = []
+boxes = []
+
 while run: # Initializes game 
     screen.fill((0,0,0))
 
     pygame.draw.rect(screen, (255, 0, 0), square_player) # draws the red square on the screen params (surface, colour, rectangle) 
+    
+
+    while len(coins) < 6:
+        coins.append(Coin(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), coin_height, coin_width, (0,255,0)))
+        boxes.append(Box(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), box_height, box_width, (255,255,255)))
+
+    for coin in coins:
+        coin.draw()
 
 
+
+    for box in boxes:
+        box.draw()
+
+
+    
     key = pygame.key.get_pressed()
-    if key[pygame.K_a] == True:
+    if key[pygame.K_a]:
         square_player.move_ip(-1,0)
         time.sleep(0.01)
     elif key[pygame.K_d] == True:
@@ -39,9 +88,14 @@ while run: # Initializes game
     elif key[pygame.K_w] == True:
         square_player.move_ip(0,-1)
         time.sleep(0.01)
+
+    square_player.clamp_ip(screen_rect)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+    
+
 
     
     pygame.display.update()
