@@ -73,33 +73,34 @@ while run: # Initializes game
             coins.remove(coin)
             score += 1
 
-
-
-
     for box in boxes:
         box.draw()
-
-
-    #for coin in coins:
-        #if square_player.colliderect(coin):
-            #coins.remove(coin)
-            #score += 1
-
-
-
+        
     
     key = pygame.key.get_pressed()
     if key[pygame.K_a] == True:
         square_player.move_ip(-1,0)
+        for box in boxes:
+            if square_player.colliderect(box):
+                square_player.move_ip(1,0)
         time.sleep(0.01)
     elif key[pygame.K_d] == True:
         square_player.move_ip(1,0)
+        for box in boxes:
+            if square_player.colliderect(box):
+                square_player.move_ip(-1,0)
         time.sleep(0.01)
     elif key[pygame.K_s] == True:
         square_player.move_ip(0,1)
+        for box in boxes:
+            if square_player.colliderect(box):
+                square_player.move_ip(0,-1)
         time.sleep(0.01)
     elif key[pygame.K_w] == True:
         square_player.move_ip(0,-1)
+        for box in boxes:
+            if square_player.colliderect(box):
+                square_player.move_ip(0,1)
         time.sleep(0.01)
 
     square_player.clamp_ip(screen_rect)
