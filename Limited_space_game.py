@@ -1,6 +1,10 @@
 import pygame # Imports pygame module
+import pygame.freetype
 import time # Imports time module
 import random
+
+
+my_font = pygame.freetype.Font
 
 pygame.init() # Initializes pygame
 
@@ -19,7 +23,7 @@ score = 0
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Passes the display settings to pygame
 screen_rect = screen.get_rect()
 
-square_player = pygame.Rect((300, 250, 15, 15)) # Creates a pygame rectange (x_location, y_location, width, height)
+square_player = pygame.Rect((300, 250, 15, 15)) # Creates a pygame rectange (x_location, y_location, width, height
 
 run = True # Sets running variable to True
 
@@ -64,8 +68,8 @@ while run: # Initializes game
     pygame.draw.rect(screen, (255, 0, 0), square_player) # draws the red square on the screen params (surface, colour, rectangle) 
     
 
-    while len(coins) < 6:
-        coins.append(Coin(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), coin_height, coin_width, (0,255,0)))
+    while len(coins) < 5:
+        coins.append(Coin(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), coin_height, coin_width, (252,240,3)))
         boxes.append(Box(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), box_height, box_width, (255,255,255)))
 
     for coin in coins:
