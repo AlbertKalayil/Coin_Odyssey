@@ -3,6 +3,7 @@ import time # Imports time module
 import random
 
 pygame.init() # Initializes pygame
+clock = pygame.time.Clock()
 
 SCREEN_WIDTH = 800 # Sets screen width variable to 800 pixels
 SCREEN_HEIGHT = 600 # Sets screen height variable to 600 pixels
@@ -27,6 +28,7 @@ def show_score(display_score):
     score_obj = pygame.font.SysFont('comicsans', 15, True)
     score_txt = score_obj.render(('Score:' + str(display_score)), 1 , (255,255,255))
     screen.blit(score_txt, (0, 0 ))
+
 
 class Coin():
     def __init__(self, x, y, height, width, color):
@@ -81,7 +83,6 @@ while run: # Initializes game
         if box.rect.collidelistall(new_boxes_list):
             boxes.remove(box)
             boxes.append(Box(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), box_height, box_width, (255,255,255)))
-
 
 
     key = pygame.key.get_pressed()
