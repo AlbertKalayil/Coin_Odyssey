@@ -70,7 +70,7 @@ boxes = []
 
 while run: # Initializes game 
     screen.fill((0,0,0))
-    pygame.display.set_caption(f"Space limited game")
+    pygame.display.set_caption(f"Coin Odyssey - Space Limited theme")
 
     pygame.draw.rect(screen, (255, 0, 0), square_player) # draws the red square on the screen params (surface, colour, rectangle) 
     
