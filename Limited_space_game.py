@@ -3,6 +3,7 @@ import time # Imports time module
 import random
 
 pygame.init() # Initializes pygame
+clock = pygame.time.Clock()
 
 SCREEN_WIDTH = 800 # Sets screen width variable to 800 pixels
 SCREEN_HEIGHT = 600 # Sets screen height variable to 600 pixels
@@ -22,13 +23,6 @@ screen_rect = screen.get_rect()
 square_player = pygame.Rect((300, 250, 15, 15)) # Creates a pygame rectange (x_location, y_location, width, height)
 
 run = True # Sets running variable to True
-
-def bounding_box(x, y, width, height):
-    pass
-
-def collision():
-    pass
-
 
 class Coin():
     def __init__(self, x, y, height, width, color):
@@ -64,8 +58,8 @@ while run: # Initializes game
     pygame.draw.rect(screen, (255, 0, 0), square_player) # draws the red square on the screen params (surface, colour, rectangle) 
     
 
-    while len(coins) < 6:
-        coins.append(Coin(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), coin_height, coin_width, (0,255,0)))
+    while len(coins) < 5:
+        coins.append(Coin(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), coin_height, coin_width, (252,240,3)))
         boxes.append(Box(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), box_height, box_width, (255,255,255)))
 
     for coin in coins:
