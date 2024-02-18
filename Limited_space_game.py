@@ -15,8 +15,8 @@ coin_width = 10
 box_height = 30
 box_width = 30
 
-score = 30
-timer = 1
+score = 0
+timer = 121
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Passes the display settings to pygame
 screen_rect = screen.get_rect()
