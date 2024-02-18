@@ -1,6 +1,10 @@
 import pygame # Imports pygame module
+import pygame.freetype
 import time # Imports time module
 import random
+
+
+my_font = pygame.freetype.Font
 
 pygame.init() # Initializes pygame
 clock = pygame.time.Clock()
@@ -20,7 +24,7 @@ score = 0
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Passes the display settings to pygame
 screen_rect = screen.get_rect()
 
-square_player = pygame.Rect((300, 250, 15, 15)) # Creates a pygame rectange (x_location, y_location, width, height)
+square_player = pygame.Rect((300, 250, 15, 15)) # Creates a pygame rectange (x_location, y_location, width, height
 
 run = True # Sets running variable to True
 
