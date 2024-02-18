@@ -1,10 +1,6 @@
 import pygame # Imports pygame module
-import pygame.freetype
 import time # Imports time module
 import random
-
-
-my_font = pygame.freetype.Font
 
 pygame.init() # Initializes pygame
 
@@ -27,12 +23,10 @@ square_player = pygame.Rect((300, 250, 15, 15)) # Creates a pygame rectange (x_l
 
 run = True # Sets running variable to True
 
-def bounding_box(x, y, width, height):
-    pass
-
-def collision():
-    pass
-
+def show_score(display_score):
+    score_obj = pygame.font.SysFont('comicsans', 15, True)
+    score_txt = score_obj.render(('Score:' + str(display_score)), 1 , (255,255,255))
+    screen.blit(score_txt, (0, 0 ))
 
 class Coin():
     def __init__(self, x, y, height, width, color):
@@ -66,7 +60,7 @@ while run: # Initializes game
     pygame.display.set_caption(f"Score: {score}")
 
     pygame.draw.rect(screen, (255, 0, 0), square_player) # draws the red square on the screen params (surface, colour, rectangle) 
-    
+    show_score(score)
 
     while len(coins) < 5:
         coins.append(Coin(random.randint(20, SCREEN_WIDTH-20), random.randint(20, SCREEN_HEIGHT-20), coin_height, coin_width, (252,240,3)))
