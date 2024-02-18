@@ -126,7 +126,7 @@ while run: # Initializes game
                     square_player.move_ip(0,1)
                     time.sleep(0.01)
         
-        timer -= 0.016666667
+        timer -= (1/60)
 
     else:
         game_over_screen(score)
